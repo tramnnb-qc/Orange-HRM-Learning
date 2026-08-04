@@ -58,21 +58,27 @@ export const config = {
   // https://saucelabs.com/platform/platform-configurator
   //
   capabilities: [
-    {
-      // browserName: 'firefox',
-      browserName: "chrome",
-      browserVersion: "stable",
-      "goog:chromeOptions": {
-        args: process.env.CI
-          ? [
-              "--headless=new",
-              "--no-sandbox",
-              "--disable-gpu",
-              "--window-size=1920,1080",
-            ]
-          : [],
-      },
-    },
+    process.env.BROWSER === "firefox"
+      ? {
+          browserName: "firefox",
+          "moz:firefoxOptions": {
+            args: process.env.CI ? ["-headless"] : [],
+          },
+        }
+      : {
+          browserName: "chrome",
+          browserVersion: "stable",
+          "goog:chromeOptions": {
+            args: process.env.CI
+              ? [
+                  "--headless=new",
+                  "--no-sandbox",
+                  "--disable-gpu",
+                  "--window-size=1920,1080",
+                ]
+              : [],
+          },
+        },
   ],
 
   //
