@@ -1,0 +1,16 @@
+name: E2E Tests
+
+on:
+  push:
+    branches:
+      - tram/cicd
+
+  pull_request:
+
+jobs:
+  begin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say hello
+        run: echo "Hello from robot"
