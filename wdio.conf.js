@@ -264,6 +264,8 @@ export const config = {
   ) {
     if (!passed) {
       await browser.takeScreenshot();
+      const name = test.title.replace(/[^a-z0-9]/gi, "_");
+      await browser.saveScreenshot(`./screenshots/${name}-${Date.now()}.png`);
     }
   },
 
